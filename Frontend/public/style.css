@@ -1,0 +1,814 @@
+body{
+    overflow-x: hidden;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.main{
+    width: 100vw;
+    height: 100vh;
+}
+.backimg{
+  opacity: 0.9;
+  filter: brightness(0.4);
+}
+.home_container{
+    width: 80%;
+}
+.home_title_box p{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    text-wrap: wrap;
+    color: white;
+}
+.scrolltext h2 {
+    text-shadow: 
+        -1px -1px 0 #ffffff,  
+         1px -1px 0 #ffffff,
+        -1px  1px 0 #ffffff,
+         1px  1px 0 #ffffff; /* Black shadow for outline */
+    color: black;
+}
+.home_title_box > h1,h2 {
+  text-shadow: 
+      -1px -1px 0 #ffffff,  
+       1px -1px 0 #ffffff,
+      -1px  1px 0 #ffffff,
+       1px  1px 0 #ffffff; /* Black shadow for outline */
+  color: #800000;
+}
+.home_buttons{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+}
+
+@keyframes scrollimg {
+  from{
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  to{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.scrollimg{
+  animation: scrollimg linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+@keyframes scrolltext {
+  from{
+    transform: translateX(200px);
+  }
+  to{
+    transform: translateX(0);
+  }
+}
+.scrolltext{
+  animation: scrolltext linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+.homebooks{
+  height: 20rem;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.section3{
+  background-color: #460002;
+background-image: linear-gradient(180deg, #460002 0%, #ffffff 55%, #460002 100%);
+}
+
+.section2{
+  background-color: #040404;
+background-image: linear-gradient(90deg, #040404 0%, #350002 30%, #460002 66%, #000000 100%);
+}
+.scrolltext p{
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-size: 1.5rem;
+  font-style: normal;
+}
+
+.section4{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #79020a;
+background-image: linear-gradient(180deg, #040404 0%, #460002 30%, #460002 66%, #040404 100%);
+
+}
+.section4 h3{
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  font-family: "Edu AU VIC WA NT Pre", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+}
+.moving-object {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.moving-object img {
+  width: 20rem; 
+  height: 15rem; 
+  object-fit: cover; 
+  margin: 0 10px;
+}
+
+/* Animation for smooth continuous scrolling */
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.scroll-wrapper {
+  display: flex;
+  animation: slide 8s linear infinite;
+}
+.scroll-wrapper:hover{
+  cursor: pointer;
+  animation-play-state: paused;
+}
+
+/* From Uiverse.io by Randdose */ 
+.button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0.4em 1.5em;
+    border: #ffffff solid 0.15em;
+    border-radius: 0.25em;
+    color: #ffffff;
+    font-size: 1.3em;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border 300ms, color 300ms;
+    user-select: none;
+  }
+  
+  .button p {
+    z-index: 1;
+  }
+  
+  .button:hover {
+    color: #ffffff;
+  }
+  
+  .button:active {
+    border-color: #800000;
+  }
+  
+  .button::after, .button::before {
+    content: "";
+    position: absolute;
+    width: 9em;
+    aspect-ratio: 1;
+    background: #800000;
+    border-radius: 50%;
+    transition: transform 500ms, background 300ms;
+  }
+  
+  .button::before {
+    left: 0;
+    transform: translateX(-8em);
+  }
+  
+  .button::after {
+    right: 0;
+    transform: translateX(8em);
+  }
+  
+  .button:hover:before {
+    transform: translateX(-1em);
+  }
+  
+  .button:hover:after {
+    transform: translateX(1em);
+  }
+  
+  .button:active:before,
+  .button:active:after {
+    background: #ffffff;
+  }
+  .signup{
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    background-color: #800000;
+  }
+  
+  /* From Uiverse.io by Yaya12085 */ 
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 450px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-top: 4rem;
+    padding: 40px;
+    border-radius: 20px;
+    position: relative;
+    border: 2px solid white;
+  }
+  
+  .title {
+    font-size: 28px;
+    color: #800000;
+    text-shadow: 
+        -1px -1px 0 #ffffff,  
+         1px -1px 0 #ffffff,
+        -1px  1px 0 #ffffff,
+         1px  1px 0 #ffffff;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+  }
+  
+  .title::before,.title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: #800000;
+  }
+  
+  .title::before {
+    width: 18px;
+    height: 18px;
+    background-color: #800000;
+  }
+  
+  .title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+  }
+  
+  .message, .signin {
+    color: white;
+    font-size: 14px;
+  }
+  
+  .signin {
+    text-align: center;
+  }
+  
+  .signin a {
+    color: royalblue;
+    cursor: pointer;
+  }
+  
+  .signin a:hover {
+    text-decoration: underline royalblue;
+  }
+  
+  .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+  
+  .form label {
+    position: relative;
+  }
+  
+  .form label .input {
+    color: black;
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+  }
+  
+  
+  .form label .input + span {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+    padding-top: 4px;
+  }
+  .form label .imginput + span {
+    top: 35px;
+  }
+  
+  .form label .input:placeholder-shown + span {
+    top: 15px;
+    font-size: 0.9em;
+  }
+  
+  .form label .input:focus + span,.form label .input:valid + span {
+    top: 35px;
+    font-size: 0.7em;
+    font-weight: 600;
+  }
+  
+  .form label .input:valid + span {
+    color: green;
+  }
+  
+  .submit {
+    border: none;
+    outline: none;
+    background-color: #800000;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+  }
+  
+  .submit:hover {
+    background-color: rgb(56, 90, 194);
+  }
+  
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+  
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+.left_sidebar{
+  background-color: #040404;
+background-image: linear-gradient(90deg, #040404 0%, #350002 30%, #460002 66%, #000000 100%);
+}
+.topbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background-color: #040404;
+background-image: linear-gradient(90deg, #040404 0%, #350002 30%, #460002 66%, #000000 100%);
+}
+.sidebar_items{
+  color: white;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+/* From Uiverse.io by gharsh11032000 */ 
+.menu {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ffffff;
+  width: fit-content;
+  display: flex;
+  list-style: none;
+}
+
+.menu a {
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.menu .link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 36px;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu .link::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu .link svg {
+  width: 14px;
+  height: 14px;
+  fill: black;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.menu .item {
+  position: relative;
+}
+
+.menu .item .submenu {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 100%;
+  border-radius: 0 0 16px 16px;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow: scroll;
+  border: 1px solid #cccccc;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1;
+  pointer-events: none;
+  list-style: none;
+}
+
+.menu .item:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  border-top: transparent;
+  border-color: white;
+}
+
+.menu .item:hover .link {
+  color: black;
+  border-radius: 16px 16px 0 0;
+}
+
+.menu .item:hover .link::after {
+  transform: scaleX(1);
+  transform-origin: right;
+}
+
+.menu .item:hover .link svg {
+  fill: #ffffff;
+  transform: rotate(-180deg);
+}
+
+.submenu .submenu-item {
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.submenu .submenu-link {
+  display: block;
+  padding: 12px 24px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.submenu .submenu-item:last-child .submenu-link {
+  border-bottom: none;
+}
+
+.submenu .submenu-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: -1;
+  transform-origin: left;
+  transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.submenu .submenu-link:hover:before {
+  transform: scaleX(1);
+  transform-origin: right;
+}
+
+.submenu .submenu-link:hover {
+  color: black;
+}
+.go-to-cart {
+  position: relative;  /* This allows positioning relative to this container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;  /* Smooth transition */
+}
+
+.cart-count { 
+  margin-left: 0px; /* Adjust the gap between the count and the cart icon */
+  color: white;
+  font-size: 1.2em;
+}
+
+.cart-icon {
+  font-size: 1em;  /* Adjust the size of the cart icon */
+}
+
+/* Move both the count and the cart icon when menu is hovered */
+.menu:hover ~ .go-to-cart {
+  transform: translateY(200px); /* Adjust based on the distance you want to move */
+}
+
+
+/* Search Bar */
+
+.search {
+  display: inline-block;
+  position: relative;
+}
+.search{
+  z-index: 12;
+}
+.search input[type="text"] {
+  width: 300px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+}
+
+.search button[type="submit"] {
+  background-color: #800000;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.search button[type="submit"]:hover {
+  background-color: rgb(173, 122, 122);
+}
+
+.show_books{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 90%;
+  height: 35rem;
+  top: 100px;
+  right: 0;
+  background-color: rgb(189, 211, 211);
+  border: 1px solid black;
+ 
+}
+
+.card_container{
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  overflow: auto;
+  width: 95%;
+  height: 90%;
+  border: 1px solid black;
+}
+::-webkit-scrollbar{
+  display: none;
+}
+
+
+/* Card flip styles */
+.card {
+  --bg-card: #27272a;
+  --primary: #6d28d9;
+  --primary-800: #4c1d95;
+  --primary-shadow: #2e1065;
+  --light: #d9d9d9;
+  --zinc-800: #18181b;
+  --bg-linear: linear-gradient(0deg, var(--primary) 50%, var(--light) 125%);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  width: 16rem;
+  height: 23rem;
+  background-color: var(--bg-card);
+  border-radius: 1rem;
+  perspective: 1000px; /* Enable 3D effect for the card flip */
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transform-style: preserve-3d; /* Preserve the 3D effect */
+  transition: transform 0.6s; /* Smooth transition for flip effect */
+}
+
+/* Hover over the image container to flip the card */
+
+.card-inner:hover {
+  transform: rotateY(180deg);
+}
+
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; 
+  border-radius: 1rem;
+}
+
+.card-front {
+  background-color: var(--bg-card);
+}
+
+.card-back {
+  background-color: #800000;
+  transform: rotateY(180deg); /* Initially rotate the back side */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--light);
+}
+
+.image_container {
+  border: 4px solid white;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 13rem;
+  background-color: #471919;
+  border-radius: 0.5rem;
+}
+
+.image_container .image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3rem;
+  fill: var(--light);
+}
+
+.card_title {
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--light);
+  text-transform: capitalize;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: lightgreen;
+}
+
+.cart-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: #800000;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--light);
+  text-wrap: nowrap;
+  border: 2px solid white;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 0.25rem 1px var(--light);
+}
+
+.cart-button .cart-icon {
+  width: 1rem;
+}
+
+/* FOOTER */
+.footer{
+  width: 100%;
+  height: 100%;
+}
+.footsec1{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 7rem;
+  border-bottom: 1px solid white;
+}
+.footbox{
+  margin: 0 30px;
+  font-size: 12px;
+  width: 8rem;
+  min-height: 5rem;
+}
+#fb1,#fb2,#fb3,#fb4,#fb6{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.footbox h3{
+  color: white;
+  margin: 5px 0 10px 0;
+}
+.footbox a , .footbox p{
+  text-decoration: none;
+  color: gray;
+}
+.footbox a:hover{
+  color: #800000;
+  scale: 1.2;
+}
+.footer p{
+  text-align: center;
+  font-size: 10px;
+  margin: 2px 0 0 0;
+  font-weight: bold;
+  font-family:Georgia, 'Times New Roman', Times, serif
+}
+
+.fb5{
+  width: 14rem;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  color: gray;
+}
+.fb5 p{
+  font-size: 12px;
+  cursor: pointer;
+}
+.fb5 p:hover{
+  color: #800000;
+  text-decoration: underline;
+}
+#fb6 i{
+  padding: 0 5px;
+  font-size: 25px;
+}
