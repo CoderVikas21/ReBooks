@@ -20,12 +20,12 @@ const SellBooks = () => {
 
         // If the input type is file, set the file
         if (name === 'img') {
-            setUserData({
+            setBookData({
                 ...bookData,
                 img: files[0] // Store the file object
             });
         } else {
-            setUserData({
+            setBookData({
                 ...bookData,
                 [name]: value,
             });
@@ -34,7 +34,7 @@ const SellBooks = () => {
     async function submitHandler(event){
         event.preventDefault();
         try{
-            const res = await axios.post('http://localhost:5000/api/v1/signup' ,bookData);
+            const res = await axios.post(`${process.env.BACKEND_URL}/api/v1/signup` ,bookData);
             toast.success(res.data.message);
         }
         catch(e){

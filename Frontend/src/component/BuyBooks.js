@@ -4,18 +4,20 @@ import BookCard from '../component/BookCard'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import Spinner from './Spinner'
 
 const BuyBooks = ({loggedIn,setLoggin}) => {
     const img_src = "https://res.cloudinary.com/dttwn5t0v/image/upload/v1731428868/patrick-tomasso-Oaqk7qqNh_c-unsplash_pz4dj9.jpg";
 
     const navigate = useNavigate();
-
+    const [loading , setLoading] = useState(false)
     const [cards,setCards] = useState([]);
     const [count,setCount] = useState(0);
     const [genre,setGenre] = useState([]);
 
     async function fetchData(){
-      const response = await axios.get('http://localhost:5000/api/v1/fetchall');
+      setLoading(true);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/fetchall`);
       const bookData = response.data.data;
 
       const genreList = [];
@@ -25,18 +27,20 @@ const BuyBooks = ({loggedIn,setLoggin}) => {
             genreList.push(bookData[i].genre);
         }
       }
-
       setGenre(genreList);
       setCards(bookData);
+      setLoading(false);
     }
     useEffect(()=>{
       fetchData();
     },[])
 
     async function fetchByGenre(genre){
+      setLoading(true);
       //passing genre as a req.query can also pass in body
-      const newBooks = await axios.get(`http://localhost:5000/api/v1/fetchbygenre?genre=${genre}`);
+      const newBooks = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/fetchbygenre?genre=${genre}`);
       setCards(newBooks.data.data);
+      setLoading(false);
     }
 
   return (
@@ -87,24 +91,31 @@ const BuyBooks = ({loggedIn,setLoggin}) => {
       </div>
       <div className="show_books ">
       <img src={img_src} alt="Background" className="w-full h-full object-cover " />
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
+      {
+        loading? 
+        (<Spinner/>)
+        :
+        (
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
                 
-        <div className="card_container">
-
-        { cards.length > 0?
-          (
-            cards.map((card)=>(
-              <BookCard card={card} homebook={false} setCount={setCount}/>
-            ))
-          )
-          :
-          (<h1 className='text-7xl font-bold flex justify-center items-center'>
-            No Book Available</h1>)
-          
-        }
+          <div className="card_container">
+  
+          { cards.length > 0?
+            (
+              cards.map((card)=>(
+                <BookCard card={card} homebook={false} setCount={setCount}/>
+              ))
+            )
+            :
+            (<h1 className='text-7xl font-bold flex justify-center items-center'>
+              No Book Available</h1>)
+            
+          }
+          </div>
+             
         </div>
-           
-      </div>
+        )
+      }
               
       </div>
     </>

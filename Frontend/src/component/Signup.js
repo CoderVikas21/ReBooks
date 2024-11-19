@@ -36,7 +36,7 @@ const Signup =  ({loggedIn, setLoggin}) => {
         if(sentOTP === false){
             //OTP is not send yet
             try{
-                const mailSend = await axios.post('http://localhost:5000/api/v1/sendMail',
+                const mailSend = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/sendMail`,
                 {email:userData.email},
                 {withCredentials:true}
                 )
@@ -58,7 +58,7 @@ const Signup =  ({loggedIn, setLoggin}) => {
         else{
             //otp is sent now verify it
             try{
-                const verify = await axios.post('http://localhost:5000/api/v1/authOTP',
+                const verify = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/authOTP`,
                 {otp : userData.otp},
                 {withCredentials:true}
                 )
@@ -88,7 +88,7 @@ const Signup =  ({loggedIn, setLoggin}) => {
         }
         try{
             //backend api
-            const response = await axios.post('http://localhost:5000/api/v1/signup', 
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/signup`, 
             userData,
             {withCredentials:true}
         );

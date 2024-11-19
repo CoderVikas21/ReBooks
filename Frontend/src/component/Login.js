@@ -27,11 +27,13 @@ const Login = ({setLoggin}) => {
         try{
             //backend api
             //the withCredential is true for sending and recieving cookies in future
+            console.log(process.env.REACT_APP_BACKEND_URL)
             const response = await axios.post(
-                'http://localhost:5000/api/v1/login',
+                `${process.env.REACT_APP_BACKEND_URL}/api/v1/login`,
                 userData,
-                {withCredentials:true}
+                { withCredentials: true }
             );
+            
             toast.success(response.data.message);
             localStorage.setItem('loggedIn', 'true');
             localStorage.setItem('user', response.data.user);

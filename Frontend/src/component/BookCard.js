@@ -12,7 +12,7 @@ const BookCard = ({card,homebook,setCount}) => {
             return;
         }
         try{
-            const res = await axios.post('http://localhost:5000/api/v1/addtocart',
+            const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/addtocart`,
             {bookId : card._id,
             added},
             {withCredentials:true}

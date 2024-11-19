@@ -17,7 +17,7 @@ const Navbar = ({loggedIn,setLoggin}) => {
   async function LogOutBtn(){
     try{
       const response = await axios.post(
-        'http://localhost:5000/api/v1/logout',
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/logout`,
         {},
         {withCredentials:true}
       )
