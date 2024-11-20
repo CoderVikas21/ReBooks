@@ -34,7 +34,7 @@ const SellBooks = () => {
     async function submitHandler(event){
         event.preventDefault();
         try{
-            const res = await axios.post(`${process.env.BACKEND_URL}/api/v1/signup` ,bookData);
+            const res = await axios.post(`${process.env.BACKEND_URL}/api/v1/sellbook` ,bookData);
             toast.success(res.data.message);
         }
         catch(e){
