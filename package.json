@@ -17,6 +17,7 @@
     "otp-generator": "^4.0.1"
   },
   "scripts": {
+    "start": "cd backend && npm start",
     "client": "cd frontend && npm start",
     "server": "cd backend && npm run dev",
     "dev": "concurrently -n \"client,server\" -c \"bgGreen,bgRed\" \"npm run client\" \"npm run server\""

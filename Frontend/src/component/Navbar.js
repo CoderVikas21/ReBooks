@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import CTAButton from './CTAButton'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import { useUser } from './context'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 
 const Navbar = ({loggedIn,setLoggin}) => {
-  const [user,setUser] = useState("");
   const navigate = useNavigate();
+  const {user,setUser} = useUser();
 
   function SignUpBtn(){
     navigate('/signup');
@@ -23,7 +24,6 @@ const Navbar = ({loggedIn,setLoggin}) => {
       )
       setUser("Guest")
       toast.success(response.data.message);
-      localStorage.setItem('loggedIn', 'false');
       setLoggin(false);
       navigate('/')
     }
@@ -36,19 +36,6 @@ const Navbar = ({loggedIn,setLoggin}) => {
     
   }
   
-  useEffect(() => {
-    const newUser = localStorage.getItem('user');
-    if (!newUser) {
-      setUser("Guest");
-    } else {
-      setUser(newUser);  // No need for JSON.parse since it's a string now
-    }
-
-    const loginStatus = localStorage.getItem('loggedIn');
-    if (loginStatus === 'true') {
-      setLoggin(true);
-    }
-}, []);
   return (
     <>
       <div className="navbar absolute top-8 w-full pr-36  flex gap-10 z-10">

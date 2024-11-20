@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,useLocation} from 'react-router-dom';
 import axios from 'axios'
+import {useUser} from './context'
 import {toast} from 'react-toastify'
+
 
 const Signup =  ({loggedIn, setLoggin}) => {
     const bg_img = "https://res.cloudinary.com/dttwn5t0v/image/upload/v1730906241/glen-noble-o4-YyGi5JBc-unsplash_dl3kof.jpg"
 
+    const {setUser} = useUser();
+
     const [sentOTP , setSentOTP] = useState(false);
     const [OTPBtn , setOTPBtn] = useState("Send OTP");
     const [OTPVerify , setOTPVerify] = useState(false);
-
+    const [verifyEmail , setVerifyEmail] = useState("");  //this is the email used for verification and it should be same as register email
 
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -40,6 +44,7 @@ const Signup =  ({loggedIn, setLoggin}) => {
                 {email:userData.email},
                 {withCredentials:true}
                 )
+                setVerifyEmail(userData.email)
                 toast.info(mailSend.data.message)
                 setSentOTP(true)
                 setOTPBtn("Verify OTP")
@@ -86,6 +91,10 @@ const Signup =  ({loggedIn, setLoggin}) => {
             toast.error("Verify email please");
             return;
         }
+        if(verifyEmail !== userData.email){
+            toast.error("Verification email and Registering email are different");
+            return;
+        }
         try{
             //backend api
             const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/signup`, 
@@ -94,7 +103,7 @@ const Signup =  ({loggedIn, setLoggin}) => {
         );
             toast.success(response.data.message);
             localStorage.setItem('loggedIn', 'true');
-            localStorage.setItem('user', response.data.user);
+            setUser(uerData.firstname);
             setLoggin(true)
             navigate('/buybooks')
         }

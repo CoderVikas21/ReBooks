@@ -103,7 +103,7 @@ const BuyBooks = ({loggedIn,setLoggin}) => {
           { cards.length > 0?
             (
               cards.map((card)=>(
-                <BookCard card={card} homebook={false} setCount={setCount}/>
+                <BookCard card={card} homebook={false} setCount={setCount} key={card._id}/>
               ))
             )
             :

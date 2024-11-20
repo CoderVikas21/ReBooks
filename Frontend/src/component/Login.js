@@ -3,10 +3,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useUser } from './context';
 
 const Login = ({setLoggin}) => {
     const bg_img = "https://res.cloudinary.com/dttwn5t0v/image/upload/v1730906241/glen-noble-o4-YyGi5JBc-unsplash_dl3kof.jpg"
     const [passwordVisible, setPasswordVisible] = useState(false);
+
+    const {setUser} = useUser();
 
     const navigate = useNavigate();
     const [userData, setUserData] = useState({
@@ -36,7 +39,7 @@ const Login = ({setLoggin}) => {
             
             toast.success(response.data.message);
             localStorage.setItem('loggedIn', 'true');
-            localStorage.setItem('user', response.data.user);
+            setUser(response.data.user);
             setLoggin(true)
             navigate('/buybooks')
         }

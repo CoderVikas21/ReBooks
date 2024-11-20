@@ -9,7 +9,8 @@ require("dotenv").config();
 app.use(cookieparser());
 
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Your frontend URL
+    // origin:'http://localhost:3000',    //local frontend url
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Your  netlify frontend URL
     credentials: true, // Allow cookies to be sent
 }));
 app.use(express.json());
