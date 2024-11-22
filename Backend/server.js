@@ -15,16 +15,6 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.use(session({
-    secret: 'vikas123456', // Secret key to sign session IDs
-    resave: false, // Don't save sessions that haven't been modified
-    saveUninitialized: false, // Don't save uninitialized sessions
-    cookie: {
-      httpOnly: true, // Make the cookie accessible only by the server
-      secure: false, // Set to true if using HTTPS
-      maxAge: 5 * 60 *1000, // Session cookie will expire in 5 minute
-    }
-  }));
 
 const DBConnect = require("./config/Database");
 DBConnect();

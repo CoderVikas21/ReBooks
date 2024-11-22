@@ -1,5 +1,6 @@
 const otpGenerator = require('otp-generator');
 const nodemailer = require("nodemailer");
+const { listSearchIndexes } = require('../models/bookSchema');
 require("dotenv").config();
 
 async function SendMail(req, res) {
@@ -12,8 +13,19 @@ async function SendMail(req, res) {
         });
 
         // Store OTP in session
-        req.session.otp = newOtp;
-        req.session.otpExpiry = Date.now() + 5 * 60 * 1000; // 5-minute expiry
+        
+        let otpExpiry = Date.now() + 5 * 60 * 1000; // 5-minute expiry
+
+        res.cookie('otp', newOtp, { 
+            httpOnly: true,  // Makes the cookie accessible only to the server (security)
+            secure: process.env.NODE_ENV === 'production',  // Ensure cookies are sent over HTTPS
+            maxAge: 5 * 60 * 1000  // Cookie expiry time (5 minutes)
+        });
+        res.cookie('otpExpiry', otpExpiry, { 
+            httpOnly: true, 
+            secure: process.env.NODE_ENV === 'production', 
+            maxAge: 5 * 60 * 1000 
+        });
 
         const { email } = req.body;
         if (!email) {

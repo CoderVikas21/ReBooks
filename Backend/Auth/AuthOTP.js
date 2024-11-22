@@ -1,7 +1,7 @@
 async function AuthOTP(req, res) {
     const { otp } = req.body; // OTP passed from client
-    const userOTP = req.session.otp; // OTP stored in session
-    const otpExpiry = req.session.otpExpiry;
+    const userOTP = req.cookies.otp; // Retrieve OTP from cookies
+    const otpExpiry = req.cookies.otpExpiry; // Retrieve OTP expiry time from cookies
 
     if (!userOTP) {
         return res.status(400).json({
@@ -19,6 +19,8 @@ async function AuthOTP(req, res) {
     }
 
     if (otp === userOTP) {
+        res.clearCookie('otp');
+        res.clearCookie('otpExpiry');
         return res.status(200).json({
             success: true,
             message: "OTP Verified"

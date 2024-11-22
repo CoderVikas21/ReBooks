@@ -103,7 +103,7 @@ const Signup =  ({loggedIn, setLoggin}) => {
         );
             toast.success(response.data.message);
             localStorage.setItem('loggedIn', 'true');
-            setUser(uerData.firstname);
+            setUser(userData.firstname);
             setLoggin(true)
             navigate('/buybooks')
         }
