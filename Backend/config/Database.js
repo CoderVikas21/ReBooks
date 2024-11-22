@@ -2,16 +2,16 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 async function DBConnect(){
-    await mongoose.connect(process.env.DB_URL,{
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(()=>{
+    try{
+        await mongoose.connect(process.env.DB_URL);
         console.log("DB Connected Successfully");
-    })
-    .catch(()=>{
+        return;
+    }
+    catch(e){
         console.log("Error in DB Connection");
-    })
+        console.log(e.message);
+    }
+    
 }
 
 module.exports = DBConnect;
