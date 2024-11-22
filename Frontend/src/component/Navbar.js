@@ -24,6 +24,7 @@ const Navbar = ({loggedIn,setLoggin}) => {
       )
       setUser("Guest")
       toast.success(response.data.message);
+      localStorage.setItem('loggedIn', 'false');
       setLoggin(false);
       navigate('/')
     }
