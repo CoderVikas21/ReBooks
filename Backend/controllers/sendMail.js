@@ -1,5 +1,6 @@
 const otpGenerator = require('otp-generator');
 const nodemailer = require("nodemailer");
+const bcrypt = require('bcrypt');
 const { listSearchIndexes } = require('../models/bookSchema');
 require("dotenv").config();
 
@@ -10,13 +11,17 @@ async function SendMail(req, res) {
             lowerCaseAlphabets: false,
             upperCaseAlphabets: false,
             specialChars: false
-        });
+        });     
+
+
+        //so anyone cnt access it in application tab of inspect element in browser
+        const encryptedOTP = await bcrypt.hash(newOtp, 10);
 
         // Store OTP in session
         
         let otpExpiry = Date.now() + 5 * 60 * 1000; // 5-minute expiry
 
-        res.cookie('otp', newOtp, { 
+        res.cookie('otp', encryptedOTP, { 
             httpOnly: true,  // Makes the cookie accessible only to the server (security)
             secure: process.env.NODE_ENV === 'production',  // Ensure cookies are sent over HTTPS
             maxAge: 5 * 60 * 1000  // Cookie expiry time (5 minutes)
@@ -55,7 +60,8 @@ async function SendMail(req, res) {
             message: "Check your email for OTP"
         });
 
-    } catch (e) {
+    } 
+    catch (e) {
         console.log(e.message);
         return res.status(200).json({
             success: false,

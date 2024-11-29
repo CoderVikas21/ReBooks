@@ -3,11 +3,12 @@ import { useState } from 'react';
 import axios from 'axios'
 import { toast } from 'react-toastify';
 
+
 const SellBooks = () => {
     const bg_img = "https://res.cloudinary.com/dttwn5t0v/image/upload/v1730906241/glen-noble-o4-YyGi5JBc-unsplash_dl3kof.jpg"
 
     const [bookData, setBookData] = useState({
-        title: "",
+        name: "",
         author: "",
         price: "",
         description: "",
@@ -33,24 +34,34 @@ const SellBooks = () => {
     }
     async function submitHandler(event){
         event.preventDefault();
-        try{
-            const res = await axios.post(`${process.env.BACKEND_URL}/api/v1/sellbook` ,bookData);
+        
+        const formData = new FormData();
+        formData.append('name', bookData.name);
+        formData.append('author', bookData.author);
+        formData.append('price', bookData.price);
+        formData.append('description', bookData.description);
+        formData.append('genre', bookData.genre);
+        formData.append('imgfile', bookData.img);  // File field named 'imgfile' in backend
+    
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/sellbook`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',  // This tells axios to send a multipart form
+                },
+            });
             toast.success(res.data.message);
         }
-        catch(e){
-            console.log("Error Occurred at Selling book");
-            console.log("Message", e.message);
-
-        // Check if the error is from the response (backend-side error)
+        catch (e) {
+            console.log("Error occurred while selling book:", e.message);
+    
             if (e.response) {
-                // If the backend provides an error message
                 toast.error(e.response.data.message);
             } else {
-                // If it's not a backend error (network issues, etc.)
                 toast.error("An unexpected error occurred. Please try again.");
             }
         }
     }
+    
   return (
     <>
       <div className="main">
@@ -63,8 +74,8 @@ const SellBooks = () => {
                             <div className="flex">
                                 <label>
                                         <input 
-                                            name='title' 
-                                            value={bookData.title} 
+                                            name='name' 
+                                            value={bookData.name} 
                                             onChange={changeHandler} 
                                             required 
                                             type="text" 

@@ -12,12 +12,13 @@ const addToCart = require("../controllers/addToCart")
 const Cart = require("../controllers/myCart")
 const authenticateOTP = require("../Auth/AuthOTP")
 const SendMail = require('../controllers/sendMail')
+const uploadFile = require("../controllers/uploadFile")
 
 
 //routes
 router.post('/signup' , Signup)
 router.post('/login' , Login)
-router.post('/sellbook' , Sellbook)
+router.post('/sellbook'  ,uploadFile.single('imgfile'), Sellbook)
 router.get('/fetchall' , fetchAll);
 router.get('/fetchbygenre' , fetchByGenre);
 router.post('/addtocart' , authenticateUser,addToCart);

@@ -14,6 +14,7 @@ const Signup =  ({loggedIn, setLoggin}) => {
     const [OTPBtn , setOTPBtn] = useState("Send OTP");
     const [OTPVerify , setOTPVerify] = useState(false);
     const [verifyEmail , setVerifyEmail] = useState("");  //this is the email used for verification and it should be same as register email
+    const [processing,setProcessing] = useState(false);
 
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -40,6 +41,7 @@ const Signup =  ({loggedIn, setLoggin}) => {
         if(sentOTP === false){
             //OTP is not send yet
             try{
+                setProcessing(true);
                 const mailSend = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/sendMail`,
                 {email:userData.email},
                 {withCredentials:true}
@@ -47,7 +49,8 @@ const Signup =  ({loggedIn, setLoggin}) => {
                 setVerifyEmail(userData.email)
                 toast.info(mailSend.data.message)
                 setSentOTP(true)
-                setOTPBtn("Verify OTP")
+                setOTPBtn("Verify OTP");
+                setProcessing(false);
             }
             catch(e){
                 console.log(e.message)
@@ -228,8 +231,10 @@ const Signup =  ({loggedIn, setLoggin}) => {
                                         />
                                         <span>OTP</span>
                                     </label>
-                                    <button className='submit w-full' onClick={OTPHandler}>
-                                        {OTPBtn}
+                                    <button className='submit w-full' onClick={OTPHandler} disabled={processing}>
+                                        {
+                                            processing? "Sending..." : OTPBtn
+                                        }
                                         </button>
                                 </div>
                             

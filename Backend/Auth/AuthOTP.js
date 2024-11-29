@@ -1,3 +1,6 @@
+
+const bcrypt = require('bcrypt');
+
 async function AuthOTP(req, res) {
     const { otp } = req.body; // OTP passed from client
     const userOTP = req.cookies.otp; // Retrieve OTP from cookies
@@ -18,14 +21,17 @@ async function AuthOTP(req, res) {
         });
     }
 
-    if (otp === userOTP) {
+    let OTPmatched = await bcrypt.compare(otp , userOTP);
+
+    if (OTPmatched) {
         res.clearCookie('otp');
         res.clearCookie('otpExpiry');
         return res.status(200).json({
             success: true,
             message: "OTP Verified"
         });
-    } else {
+    } 
+    else {
         return res.status(400).json({
             success: false,
             message: "Invalid OTP"

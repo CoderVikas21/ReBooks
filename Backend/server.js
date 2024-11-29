@@ -7,17 +7,19 @@ require("dotenv").config();
 //parsing cookies during authentication
 app.use(cookieparser());
 
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true, // Allow cookies to be sent
-}));
-app.use(express.json());
+app.use(
+    cors({
+        origin: "https://re-books-10.netlify.app", // Replace with your Netlify frontend URL
+        methods: "GET,POST,PUT,DELETE",
+        credentials: true, // If using cookies or authentication
+    })
+);
 
 
 const DBConnect = require("./config/Database");
 DBConnect();
-// const cloudConnect = require("./config/cloundinary");
-// cloudConnect();
+const cloudConnect = require("./config/cloundinary");
+cloudConnect();
 
 
 const routes = require("./routes/routes")
