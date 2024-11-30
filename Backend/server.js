@@ -6,10 +6,12 @@ require("dotenv").config();
 
 //parsing cookies during authentication
 app.use(cookieparser());
+//body parser
+app.use(express.json());
 
 app.use(
     cors({
-        origin: "https://re-books-10.netlify.app", // Replace with your Netlify frontend URL
+        origin: process.env.FRONTEND_URL, // Replace with your Netlify frontend URL
         methods: "GET,POST,PUT,DELETE",
         credentials: true, // If using cookies or authentication
     })
