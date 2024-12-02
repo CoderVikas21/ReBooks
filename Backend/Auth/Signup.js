@@ -67,7 +67,7 @@ async function Signup(req,res){
         
         res.cookie("token" , token,{
             httpOnly: true,
-            secure: true, // Use true if using HTTPS
+            secure: process.env.NODE_ENV == 'production', // Use true if using HTTPS
             sameSite: 'None',
             path: '/'
         });

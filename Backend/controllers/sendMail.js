@@ -23,12 +23,12 @@ async function SendMail(req, res) {
 
         res.cookie('otp', encryptedOTP, { 
             httpOnly: true,  // Makes the cookie accessible only to the server (security)
-            secure: true,  // Ensure cookies are sent over HTTPS
+            secure: process.env.NODE_ENV == 'production',  // Ensure cookies are sent over HTTPS
             maxAge: 5 * 60 * 1000  // Cookie expiry time (5 minutes)
         });
         res.cookie('otpExpiry', otpExpiry, { 
             sameSite: 'None',
-            secure: true, 
+            secure: process.env.NODE_ENV == 'production', 
             maxAge: 5 * 60 * 1000 
         });
 

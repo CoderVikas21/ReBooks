@@ -53,7 +53,7 @@ async function Login(req,res){
 
         res.cookie("token" , token ,{
             httpOnly: true,
-            secure: trusted, // Use true if using HTTPS
+            secure: process.env.NODE_ENV == 'production', // Use true if using HTTPS
             sameSite: 'None',
             path: '/'
         });
