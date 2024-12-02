@@ -27,8 +27,8 @@ async function SendMail(req, res) {
             maxAge: 5 * 60 * 1000  // Cookie expiry time (5 minutes)
         });
         res.cookie('otpExpiry', otpExpiry, { 
-            httpOnly: true, 
-            secure: process.env.NODE_ENV === 'production', 
+            sameSite: 'None',
+            secure: true, 
             maxAge: 5 * 60 * 1000 
         });
 

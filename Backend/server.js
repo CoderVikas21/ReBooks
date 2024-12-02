@@ -9,6 +9,7 @@ app.use(cookieparser());
 //body parser
 app.use(express.json());
 
+//for cross origin
 app.use(
     cors({
         origin: process.env.FRONTEND_URL, // Replace with your Netlify frontend URL

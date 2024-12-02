@@ -1,6 +1,7 @@
 const User = require("../models/userSchema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { trusted } = require("mongoose");
 require("dotenv").config();
 
 async function Login(req,res){
@@ -52,8 +53,8 @@ async function Login(req,res){
 
         res.cookie("token" , token ,{
             httpOnly: true,
-            secure: false, // Use true if using HTTPS
-            sameSite: 'strict',
+            secure: trusted, // Use true if using HTTPS
+            sameSite: 'None',
             path: '/'
         });
 

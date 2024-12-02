@@ -68,7 +68,7 @@ async function Signup(req,res){
         res.cookie("token" , token,{
             httpOnly: true,
             secure: true, // Use true if using HTTPS
-            sameSite: 'strict',
+            sameSite: 'None',
             path: '/'
         });
 
