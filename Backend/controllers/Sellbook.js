@@ -71,7 +71,7 @@ async function Sellbook(req, res) {
         
         // Create a new book document
         const newBook = new Book({
-            title: name,
+            name: name,
             author: author,
             price: price,
             description: description,

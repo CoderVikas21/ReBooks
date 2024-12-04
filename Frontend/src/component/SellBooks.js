@@ -9,6 +9,7 @@ const SellBooks = () => {
     const bg_img = "https://res.cloudinary.com/dttwn5t0v/image/upload/v1730906241/glen-noble-o4-YyGi5JBc-unsplash_dl3kof.jpg";
 
     const navigate = useNavigate();
+    const [uploading,setUploading] = useState(false);
     const [bookData, setBookData] = useState({
         name: "",
         author: "",
@@ -36,6 +37,7 @@ const SellBooks = () => {
     };
 
     const submitHandler = async (event) => {
+        setUploading(true);
         event.preventDefault();
 
         const formData = new FormData();
@@ -53,7 +55,7 @@ const SellBooks = () => {
                 },
             });
             toast.success(res.data.message);
-            
+            navigate(-1);
         } catch (e) {
             console.error("Error occurred while selling book:", e.message);
             if (e.response) {
@@ -61,6 +63,9 @@ const SellBooks = () => {
             } else {
                 toast.error("An unexpected error occurred. Please try again.");
             }
+        }
+        finally{
+            setUploading(false);
         }
     };
 
@@ -107,7 +112,7 @@ const SellBooks = () => {
                     </label>
 
                     <button onClick={submitHandler} className="submit">
-                        Submit
+                        {uploading ? "Publishing" : "Publish"}  
                     </button>
                     <p className="signin">
                         Already have an account? <a onClick={() => navigate("/login")}>LogIn</a>
