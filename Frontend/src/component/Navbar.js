@@ -6,7 +6,10 @@ import { useUser } from './context'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 
-const Navbar = ({loggedIn,setLoggin}) => {
+
+const Navbar = () => {
+  const {loggedIn , setLoggin} = useUser();
+
   const navigate = useNavigate();
   const {user,setUser} = useUser();
 

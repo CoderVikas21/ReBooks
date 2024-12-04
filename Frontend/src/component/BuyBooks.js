@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Spinner from './Spinner'
 
-const BuyBooks = ({loggedIn,setLoggin}) => {
+const BuyBooks = () => {
     const img_src = "https://res.cloudinary.com/dttwn5t0v/image/upload/v1731428868/patrick-tomasso-Oaqk7qqNh_c-unsplash_pz4dj9.jpg";
 
     const navigate = useNavigate();
@@ -45,13 +45,13 @@ const BuyBooks = ({loggedIn,setLoggin}) => {
 
   return (
     <>  
-    <Navbar loggedIn={loggedIn} setLoggin={setLoggin}/>
+    <Navbar/>
       <div className="left_sidebar fixed left-0 h-full min-w-32">
         <div className="sidebar_items mt-40 z-0">
           <h3 className='cursor-pointer' onClick={()=>{navigate('/')}}>Home</h3>
           <div className="menu">
             <div className="item">
-              <a href="" className="link">
+              <a  className="link">
                 <span onClick={fetchData}> ALL </span>
                 <svg viewBox="0 0 360 360">
                   <g id="SVGRepo_iconCarrier">

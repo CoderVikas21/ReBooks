@@ -7,10 +7,11 @@ import BuyBooks from './component/BuyBooks';
 import Navbar from './component/Navbar';
 import SellBooks from './component/SellBooks';
 import Cart from './component/Cart'
+import { useUser } from './component/context';
 
 
 function App() {
-  const [loggedIn,setLoggin] = useState(false);
+  const {loggedIn , setLoggin} = useUser();
   useEffect(() => {
     const loginStatus = localStorage.getItem('loggedIn');
     if (loginStatus === 'true') {
@@ -20,12 +21,12 @@ function App() {
   return (
     <>  
         <Routes>
-          <Route path = '/' element = {<Home loggedIn={loggedIn} setLoggin={setLoggin}/>}></Route>
-          <Route path = '/signup' element = {<SignUp loggedIn={loggedIn} setLoggin={setLoggin}/>}></Route>
-          <Route path = '/login' element = {<Login loggedIn={loggedIn} setLoggin={setLoggin}/>}></Route>
-          <Route path = '/buybooks' element = {<BuyBooks loggedIn={loggedIn} setLoggin={setLoggin}/>}></Route>
+          <Route path = '/' element = {<Home/>}></Route>
+          <Route path = '/signup' element = {<SignUp/>}></Route>
+          <Route path = '/login' element = {<Login/>}></Route>
+          <Route path = '/buybooks' element = {<BuyBooks/>}></Route>
           <Route path = '/sellbooks' element = {
-            loggedIn ? (<SellBooks/>) : (<SignUp loggedIn={loggedIn} setLoggin={setLoggin}/>)
+            loggedIn ? (<SellBooks/>) : (<SignUp/>)
           }></Route>
           <Route path = '/my-cart' element={<Cart/>}></Route>
         </Routes>

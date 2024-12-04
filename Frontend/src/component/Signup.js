@@ -5,7 +5,8 @@ import {useUser} from './context'
 import {toast} from 'react-toastify'
 
 
-const Signup =  ({loggedIn, setLoggin}) => {
+const Signup =  () => {
+    const {loggedIn , setLoggin} = useUser();
     const bg_img = "https://res.cloudinary.com/dttwn5t0v/image/upload/v1730906241/glen-noble-o4-YyGi5JBc-unsplash_dl3kof.jpg"
 
     const {setUser} = useUser();

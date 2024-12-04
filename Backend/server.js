@@ -1,13 +1,20 @@
 const express = require("express");
 const cors = require("cors");
 const cookieparser = require("cookie-parser");
+
+const path = require('path');
 const app = express();
 require("dotenv").config();
+
 
 //parsing cookies during authentication
 app.use(cookieparser());
 //body parser
 app.use(express.json());
+
+//for file upload
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
 
 //for cross origin
 app.use(

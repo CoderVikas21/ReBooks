@@ -13,13 +13,13 @@ import HomeBooks from './Home_page_books'
 import Footer from './Footer'
 
 
-const Home = ({loggedIn,setLoggin}) => {
+const Home = () => {
     const img_src = "https://res.cloudinary.com/dttwn5t0v/image/upload/v1730906248/susan-q-yin-2JIvboGLeho-unsplash_mrhsz7.jpg";
     const navigate = useNavigate();
 
   return (
     <>
-       <Navbar loggedIn={loggedIn} setLoggin={setLoggin}/>
+       <Navbar/>
       <div className="main">
         <img src={img_src} alt="Background" className=" backimg w-full h-screen object-cover " />
         <div className="absolute inset-0 flex flex-col items-center justify-center">
