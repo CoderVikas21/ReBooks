@@ -28,7 +28,7 @@ app.use(
 
 const DBConnect = require("./config/Database");
 DBConnect();
-const cloudConnect = require("./config/cloundinary");
+const {cloudConnect} = require("./config/cloundinary");
 cloudConnect();
 
 

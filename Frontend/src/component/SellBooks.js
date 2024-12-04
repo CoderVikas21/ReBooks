@@ -49,10 +49,13 @@ const SellBooks = () => {
         formData.append("imgfile", bookData.img); // Use 'imgfile' to match backend
 
         try {
-            const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/sellbook`, formData, {
+            const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/sellbook`, formData, 
+                {withCredentials:true},
+                {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
+                
             });
             toast.success(res.data.message);
             navigate(-1);
@@ -114,9 +117,6 @@ const SellBooks = () => {
                     <button onClick={submitHandler} className="submit">
                         {uploading ? "Publishing" : "Publish"}  
                     </button>
-                    <p className="signin">
-                        Already have an account? <a onClick={() => navigate("/login")}>LogIn</a>
-                    </p>
                 </form>
             </div>
         </div>

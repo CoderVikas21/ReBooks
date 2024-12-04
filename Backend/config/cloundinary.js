@@ -20,4 +20,23 @@ async function cloudConnect(){
     }
 };
 
-module.exports = cloudConnect;
+
+//upload func for cloudinary
+
+async function uploadCloudinary(file, folder) {
+    const options = { 
+        folder,
+        resource_type: "auto" // Automatically detect resource type (image, video, etc.)
+    };
+
+    try {
+        const res = await cloudinary.uploader.upload(file, options);
+        return res; // Return the result of the upload
+    }
+    catch (err) {
+        console.log("Cloudinary upload error:", err);
+        throw err; // Rethrow error so it can be caught in the calling function
+    }
+}
+
+module.exports = {cloudConnect,uploadCloudinary};

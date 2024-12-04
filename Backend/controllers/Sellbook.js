@@ -1,26 +1,8 @@
 const express = require('express');
 const Book = require('../models/bookSchema');  // Import your Book model
-const cloudinary = require("cloudinary").v2;
+const {uploadCloudinary} = require('../config/cloundinary')
 const path = require('path')
 
-
-//upload func for cloudinary
-
-async function uploadCloudinary(file, folder) {
-    const options = { 
-        folder,
-        resource_type: "auto" // Automatically detect resource type (image, video, etc.)
-    };
-
-    try {
-        const res = await cloudinary.uploader.upload(file, options);
-        return res; // Return the result of the upload
-    }
-    catch (err) {
-        console.log("Cloudinary upload error:", err);
-        throw err; // Rethrow error so it can be caught in the calling function
-    }
-}
 
 
 // Sellbook function
@@ -29,7 +11,6 @@ async function Sellbook(req, res) {
 
        // Get seller ID (assuming authentication middleware is applied)
         const userId = req.userId;
-        console.log("Seller ->" , userId)
         
         // Get book details from the request body
         const {name,author,price,description,genre} = req.body;
@@ -54,6 +35,13 @@ async function Sellbook(req, res) {
             });
         }
 
+        if(price < 0){
+            return res.status(400).json({
+                success: false,
+                message: "Price must be greater than zero"
+            });
+        }
+
     try {
         // // Upload the image to Cloudinary
         let validExt = ["jpg","jpeg","png"];
@@ -67,6 +55,7 @@ async function Sellbook(req, res) {
             })
         }
 
+        //it takes filepath in system and folder in cloudinary acc
         const response  = await uploadCloudinary(filePath,"Rebooks");
         
         // Create a new book document
@@ -94,8 +83,7 @@ async function Sellbook(req, res) {
             message:"Upload Failed"
         })
        }
-
-        
+    
 }
 
 module.exports = Sellbook;

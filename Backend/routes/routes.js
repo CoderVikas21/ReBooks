@@ -15,9 +15,9 @@ const SendMail = require('../controllers/sendMail')
 
 
 //routes
-router.post('/signup' ,authenticateUser, Signup)
+router.post('/signup' , Signup)
 router.post('/login' , Login)
-router.post('/sellbook'  , Sellbook)
+router.post('/sellbook'  ,authenticateUser,Sellbook)
 router.get('/fetchall' , fetchAll);
 router.get('/fetchbygenre' , fetchByGenre);
 router.post('/addtocart' , authenticateUser,addToCart);
